@@ -1,0 +1,40 @@
+<div id="<%= dom_id book %>">
+  <p class="my-5">
+    <h1 class="text-4xl text-center"><%= book.title %></h1>
+  </p>
+
+  <p class="my-5 flex justify-center h-96">
+    <%= image_tag book.cover.variant(resize_to_limit: [384, 384]) if book.cover.attached? %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Author:</strong>
+    <%= User.find(book.user_id).get_full_name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
+    <%= book.description %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Publication date:</strong>
+    <%= book.publication_date %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Chapters:</strong>
+    <%= book.chapters %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Page count:</strong>
+    <%= book.page_count %>
+  </p>
+
+  <% if action_name != "show" && policy(book).update? %>
+    <%= link_to "Show this book", book, class: "btn btn-secondary" %>
+    <%= link_to 'Edit this book', edit_book_path(book), class: "btn btn-primary" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

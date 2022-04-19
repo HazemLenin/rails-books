@@ -1,0 +1,20 @@
+<div>
+  <h1 class="font-bold text-4xl">Rails Books</h1>
+  <% if user_signed_in? %>
+    Welcome <%= current_user.get_full_name %>
+  <% end %>
+
+  <h2 class="text-3xl mt-4 mb-2">Latest Books</h2>
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 flex-wrap ml-4">
+    <% Book.latest.each do |book| %>
+      <%= render "books/bookCard", book: book %>
+    <% end %>
+  </div>
+
+  <h2 class="text-3xl mt-4 mb-2">Most Popular Books</h2>
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 flex-wrap ml-4">
+    <% Book.popular.each do |book| %>
+      <%= render "books/bookCard", book: book %>
+    <% end %>
+  </div>
+</div>

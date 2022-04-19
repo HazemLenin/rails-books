@@ -1,0 +1,11 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">New book status</h1>
+
+  <%= render "form", book_status: @book_status %>
+
+  <%
+=begin%>
+ <%= link_to 'Back to book statuses', book_book_statuses_path, class: "btn btn-secondary ml-2" %> 
+<%
+=end%>
+</div>

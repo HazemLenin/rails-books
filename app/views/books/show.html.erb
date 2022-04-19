@@ -1,0 +1,19 @@
+
+<%= render @book %>
+
+<div class="flex flex-row gap-4">
+  <% if user_signed_in? %>
+    <% if @old_book_status.exists? %>
+      <%= link_to "Edit book status (#{Status.find(@old_book_status.first.status_id)})", edit_book_book_status_path(@book, @old_book_status.first), class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to 'Add to my library', new_book_book_status_path(@book), class: "btn btn-primary" %>
+    <% end %>
+
+    <% if current_user.has_role?(:admin) || (current_user.has_role?(:author) && @book.user_id == current_user.id) %>
+      <%= link_to 'Edit this book', edit_book_path(@book), class: "btn btn-primary" %>
+      <%= button_to 'Destroy this book', book_path(@book), method: :delete, class: "btn btn-danger" %>
+    <% end %>
+  <% end %>
+
+  <%= link_to 'Back to books', books_path, class: "btn btn-primary" %>
+</div>

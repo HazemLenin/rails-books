@@ -1,0 +1,32 @@
+<nav class="flex justify-between text-white p-6 bg-stone-600">
+    <ul class="flex flex-row align-items items-center gap-3">
+        <li class="nav-item">
+            <%= link_to "Rails Books", root_path, class: "#{'text-stone-300' if current_page?(root_path)}" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to "Books", books_path, class: "#{'text-stone-300' if current_page?(books_path)}" %>
+        </li>
+        <% if user_signed_in? %>
+            <li class="nav-item">
+                <%= link_to "My Library", book_statuses_path, class: "#{'text-stone-300' if current_page?(book_statuses_path)}" %>
+            </li>
+        <% end %>
+    </ul>
+    <ul class="flex flex-row align-items items-center gap-3">
+        <% if user_signed_in? %>
+            <li class="nav-item">
+                <%= link_to current_user.username, edit_user_registration_path, class: "#{'text-stone-300' if current_page?(edit_user_registration_path)}" %>
+            </li>
+            <li class="nav-item">
+                <%= button_to "Logout", destroy_user_session_path, class: "#{'text-stone-300' if current_page?(destroy_user_session_path)}", method: :delete %>
+            </li>
+        <% else %>            
+            <li class="nav-item">
+                <%= link_to "Login", new_user_session_path, class: "#{'text-stone-300' if current_page?(new_user_session_path)}" %>
+            </li>
+            <li class="nav-item">
+                <%= link_to "Signup", new_user_registration_path, class: "#{'text-stone-300' if current_page?(new_user_registration_path)}" %>
+            </li>
+        <% end %>
+    </ul>
+</nav>

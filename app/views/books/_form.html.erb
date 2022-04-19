@@ -1,0 +1,47 @@
+<%= form_with(model: book, class: "contents") do |form| %>
+  <% if book.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(book.errors.count, "error") %> prohibited this book from being saved:</h2>
+
+      <ul>
+        <% book.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :publication_date %>
+    <%= form.date_field :publication_date, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :chapters %>
+    <%= form.number_field :chapters, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :page_count %>
+    <%= form.number_field :page_count, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :cover %>
+    <%= form.file_field :cover, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, rows: 4, class: "form-control" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "btn btn-primary w-full" %>
+  </div>
+<% end %>

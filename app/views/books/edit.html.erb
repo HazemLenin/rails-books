@@ -1,0 +1,10 @@
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-4xl">Editing book (<%= @book.title %>)</h1>
+
+  <%= render "form", book: @book %>
+
+  <div class="flex flex-row gap-4">
+    <%= link_to "Show this book", @book, class: "btn btn-secondary w-full" %>
+    <%= link_to "Back to books", books_path, class: "btn btn-secondary w-full" %>
+  </div>
+</div>

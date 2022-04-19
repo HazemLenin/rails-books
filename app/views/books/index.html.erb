@@ -1,0 +1,68 @@
+<div class="w-full">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Books</h1>
+    <%= link_to 'New book', new_book_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="grid grid-cols-4 gap-2">
+    <div class="col-span-1">
+      <%= search_form_for @q do |f| %>
+
+        <div class="form-group">
+          <%= f.label :title_cont %>
+          <%= f.search_field :title_cont, placeholder: "Title", class: "form-control" %>
+        </div>
+
+
+        <%= f.label :publication_date %>
+        <div class="grid grid-cols-2 gap-1">
+          <div class="form-group">
+            <%= f.date_field :publication_date_gteq, placeholder: "Start", class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.date_field :publication_date_lteq, placeholder: "End", class: "form-control" %>
+          </div>
+        </div>
+
+        <%= f.label :chapters %>
+        <div class="grid grid-cols-2 gap-1">
+          <div class="form-group">
+            <%= f.number_field :chapters_gteq, placeholder: "Start", class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.number_field :chapters_lteq, placeholder: "End", class: "form-control" %>
+          </div>
+        </div>
+
+        <%= f.label :page_count %>
+        <div class="grid grid-cols-2 gap-1">
+          <div class="form-group">
+            <%= f.number_field :page_count_gteq, placeholder: "Start", class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.number_field :page_count_lteq, placeholder: "End", class: "form-control" %>
+          </div>
+        </div>
+
+        <%= f.submit class: "btn btn-primary w-full" %>
+      <% end %>
+    </div>
+    <div id="books" class="col-span-3">
+      Sort by:
+      <div class="flex flex-row gap-2">
+        <%= sort_link(@q, :title, class: "btn btn-primary") %>
+        <%= sort_link(@q, :publication_date, class: "btn btn-primary") %>
+        <%= sort_link(@q, :chapters, class: "btn btn-primary") %>
+        <%= sort_link(@q, :page_count, class: "btn btn-primary") %>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 flex-wrap">
+        <% @books.each do |book| %>
+          <%= render "books/bookCard", book: book %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="bg-white p-4 rounded-xl shadow-md hover:shadow-2xl cursor-pointer hover:scale-110 transition-all">
+    <%= link_to book_path(book) do %>
+        <h3 class="text-xl text-center p-1">
+            <%= book %>
+        </h3>
+        <div class="flex justify-center p-1 h-52">
+            <%= image_tag book.cover if book.cover.attached? %>
+        </div>
+        <p class="text-sm p-1">
+            <%= book.description.truncate(50) %>
+        </p>
+        <p class="text-xs font-bold p-1">
+            Publication date: <%= book.publication_date %>
+        </p>
+        <% if policy(book).update? %>
+            <div class="flex flex-row gap-2 p-1">
+                <%= link_to "Edit", edit_book_path(book), class: "btn btn-primary" %>
+                <%= button_to "Delete", book_path(book), method: :delete, class: "btn btn-danger" %>
+            </div>
+        <% end %>
+    <% end %>
+</div>

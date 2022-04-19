@@ -1,0 +1,36 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Book statuses</h1>
+    <%
+=begin%>
+ <%= link_to 'New book status', new_book_book_status_path(@book), class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %> 
+<%
+=end%>
+  </div>
+
+  <div id="book_statuses" class="min-w-full">
+    <%
+=begin%>
+ <%= render @book_statuses %> 
+<%
+=end%>
+    <% Status.all.each do |status| %>
+      <div class="my-2">
+        <h1 class="text-4xl mb-2"><%= status %></h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 flex-wrap ml-4">
+          <% BookStatus.where(user_id: current_user.id, status_id: status.id).each do |book_status| %>
+            <%= render "books/bookCard", book: Book.find(book_status.book_id) %>
+          <% end.empty? and begin %>
+            <h2 class="text-3xl mb-2">
+              No Books
+            </h2>
+          <% end %>
+        </div>
+    <% end %>
+  </div>
+</div>
