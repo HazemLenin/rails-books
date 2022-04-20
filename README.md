@@ -1,6 +1,6 @@
 # README
 
-I started this project in 15 April 2022
+I started this project in 15 April 2022.
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
