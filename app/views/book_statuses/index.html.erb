@@ -23,8 +23,8 @@
         <h1 class="text-4xl mb-2"><%= status %></h1>
         
         <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 flex-wrap ml-4">
-          <% BookStatus.where(user_id: current_user.id, status_id: status.id).each do |book_status| %>
-            <%= render "books/bookCard", book: Book.find(book_status.book_id) %>
+          <% BookStatus.where(user: current_user, status: status).each do |book_status| %>
+            <%= render "books/bookCard", book: book_status.book %>
           <% end.empty? and begin %>
             <h2 class="text-3xl mb-2">
               No Books

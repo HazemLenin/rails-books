@@ -12,7 +12,7 @@
         <p class="text-xs font-bold p-1">
             Publication date: <%= book.publication_date %>
         </p>
-        <% if policy(book).update? %>
+        <% if user_signed_in? && policy(book).update? %>
             <div class="flex flex-row gap-2 p-1">
                 <%= link_to "Edit", edit_book_path(book), class: "btn btn-primary" %>
                 <%= button_to "Delete", book_path(book), method: :delete, class: "btn btn-danger" %>

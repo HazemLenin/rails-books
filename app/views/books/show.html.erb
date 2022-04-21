@@ -3,8 +3,10 @@
 
 <div class="flex flex-row gap-4">
   <% if user_signed_in? %>
-    <% if @old_book_status.exists? %>
-      <%= link_to "Edit book status (#{Status.find(@old_book_status.first.status_id)})", edit_book_book_status_path(@book, @old_book_status.first), class: "btn btn-primary" %>
+    <% if @book_status %>
+      <%= link_to edit_book_book_status_path(@book, @book_status), class: "btn btn-primary" do %>
+      Edit book status (<%= @book_status.status %>)<% if @book_status.status.title == "reading" %> (<%= @book.page_count %> / <%= @book_status.pages %>)<% end %>
+      <% end %>
     <% else %>
       <%= link_to 'Add to my library', new_book_book_status_path(@book), class: "btn btn-primary" %>
     <% end %>

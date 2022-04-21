@@ -9,7 +9,7 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Author:</strong>
-    <%= User.find(book.user_id).get_full_name %>
+    <%= book.user.get_full_name %>
   </p>
 
   <p class="my-5">
