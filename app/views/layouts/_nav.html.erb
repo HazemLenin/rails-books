@@ -3,13 +3,28 @@
         <li class="nav-item">
             <%= link_to "Rails Books", root_path, class: "#{'text-stone-300' if current_page?(root_path)}" %>
         </li>
-        <li class="nav-item">
-            <%= link_to "Books", books_path, class: "#{'text-stone-300' if current_page?(books_path)}" %>
-        </li>
         <% if user_signed_in? %>
-            <li class="nav-item">
-                <%= link_to "My Library", book_statuses_path, class: "#{'text-stone-300' if current_page?(book_statuses_path)}" %>
-            </li>
+            <% if current_user.has_role?(:reader) %>
+                <li class="nav-item">
+                    <%= link_to "Books", books_path, class: "#{'text-stone-300' if current_page?(books_path)}" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "My Library", book_statuses_path, class: "#{'text-stone-300' if current_page?(book_statuses_path)}" %>
+                </li>
+            <% end %>
+            <% if current_user.has_role?(:author) %>
+                <li class="nav-item">
+                    <%= link_to "My Books", books_path, class: "#{'text-stone-300' if current_page?(books_path)}" %>
+                </li>
+            <% end %>
+            <% if current_user.has_role?(:admin) %>
+                <li class="nav-item">
+                    <%= link_to "Books", books_path, class: "#{'text-stone-300' if current_page?(books_path)}" %>
+                </li>
+                <li class="nav-item">
+                    <%= link_to "Dashboard", rails_admin_path, class: "#{'text-stone-300' if current_page?(rails_admin_path)}" %>
+                </li>
+            <% end %>
         <% end %>
     </ul>
     <ul class="flex flex-row align-items items-center gap-3">

@@ -4,15 +4,15 @@ class BooksController < ApplicationController
 
   # GET /books or /books.json
   def index
-    @q = Book.ransack(params[:q])
+    @q = policy_scope(Book).ransack(params[:q])
     @books = @q.result(distinct: true)
   end
 
   # GET /books/1 or /books/1.json
   def show
-    @author = User.find(@book.user_id)
+    @author = @book.user
     if user_signed_in?
-      @old_book_status = BookStatus.where(user_id: current_user.id, book_id: @book.id) # to show user book_status in book view
+      @book_status = BookStatus.where(user: current_user, book: @book).first # to show user book_status in book view
     end
   end
 
@@ -31,6 +31,7 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     authorize @book
+    @book.user = current_user
     respond_to do |format|
       if @book.save
         format.html { redirect_to book_url(@book), notice: "Book was successfully created." }

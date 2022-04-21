@@ -15,7 +15,7 @@ class BookStatusesController < ApplicationController
   # GET /book_statuses/new
   def new
     @book_status = BookStatus.new
-    old_book_status = BookStatus.where(user_id: current_user.id, book_id: @book.id)
+    old_book_status = BookStatus.where(user: current_user, book: @book)
     
     if old_book_status.exists?
       redirect_to edit_book_book_status_path(@book, old_book_status.first)
@@ -82,6 +82,6 @@ class BookStatusesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_status_params
-      params.require(:book_status).permit(:status_id)
+      params.require(:book_status).permit(:status_id, :pages)
     end
 end
