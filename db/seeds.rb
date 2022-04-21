@@ -14,7 +14,9 @@ User.create!([{
     password: "helloworld"
 }])
 
-User.find(1).add_role(:reader, :author, :admin)
+User.find(1).add_role(:reader)
+User.find(1).add_role(:author)
+User.find(1).add_role(:admin)
 
 10.times do |i|
     Book.create!([{
