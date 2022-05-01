@@ -83,6 +83,9 @@
   .link {
     @apply transition-all hover:text-indigo-400;
   }
+  footer div ul li {
+    @apply py-2;
+  }
 }
 
 
