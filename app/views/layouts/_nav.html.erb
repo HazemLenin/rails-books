@@ -5,25 +5,41 @@
         </li>
         <% if user_signed_in? %>
             <% if current_user.has_role?(:reader) %>
-                <li class="nav-item">
-                    <%= link_to "Books", books_path, class: "#{'text-stone-300' if current_page?(books_path)}" %>
-                </li>
-                <li class="nav-item">
-                    <%= link_to "My Library", book_statuses_path, class: "#{'text-stone-300' if current_page?(book_statuses_path)}" %>
+                <li class="nav-item dropdown-btn">
+                    Reader
+                    <ul class="dropdown">
+                        <li class="dropdown-item">
+                            <%= link_to "Books", books_path, class: "#{'text-black' if current_page?(books_path)}" %>
+                        </li>
+                        <li class="dropdown-item">
+                            <%= link_to "My Library", book_statuses_path, class: "#{'text-black' if current_page?(book_statuses_path)}" %>
+                        </li>
+                    </ul>
                 </li>
             <% end %>
             <% if current_user.has_role?(:author) %>
-                <li class="nav-item">
-                    <%= link_to "My Books", books_path, class: "#{'text-stone-300' if current_page?(books_path)}" %>
+                <li class="nav-item dropdown-btn">
+                    Author
+                    <ul class="dropdown">
+                        <li class="dropdown-item">
+                            <%= link_to "My Books", books_path, class: "#{'text-black' if current_page?(books_path)}" %>
+                        </li>
+                    </ul>
                 </li>
             <% end %>
             <% if current_user.has_role?(:admin) %>
-                <li class="nav-item">
-                    <%= link_to "Books", books_path, class: "#{'text-stone-300' if current_page?(books_path)}" %>
+                <li class="nav-item dropdown-btn">
+                    Admin
+                    <ul class="dropdown">
+                        <li class="dropdown-item">
+                            <%= link_to "Books", books_path, class: "#{'text-black' if current_page?(books_path)}" %>
+                        </li>
+                        <li class="dropdown-item">
+                            <%= link_to "Dashboard", rails_admin_path, class: "#{'text-black' if current_page?(rails_admin_path)}" %>
+                        </li>
+                    </ul>
                 </li>
-                <li class="nav-item">
-                    <%= link_to "Dashboard", rails_admin_path, class: "#{'text-stone-300' if current_page?(rails_admin_path)}" %>
-                </li>
+                
             <% end %>
         <% end %>
     </ul>

@@ -57,6 +57,26 @@
   .alert {
     @apply bg-red-100 border-2 border-red-400 text-red-500 p-4;
   }
+
+  .dropdown-btn {
+    @apply relative cursor-pointer;
+  }
+
+  .dropdown {
+    @apply hidden absolute bg-white p-6 w-36;
+  }
+
+  .dropdown-btn:hover .dropdown {
+    @apply block;
+  }
+
+  .dropdown-item {
+    @apply text-gray-500;
+  }
+
+  .dropdown-item:hover {
+    @apply text-black;
+  }
 }
 
 @layer base {

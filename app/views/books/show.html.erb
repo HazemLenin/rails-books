@@ -4,11 +4,15 @@
 <div class="flex flex-row gap-4">
   <% if user_signed_in? %>
     <% if @book_status %>
-      <%= link_to edit_book_book_status_path(@book, @book_status), class: "btn btn-primary" do %>
-      Edit book status (<%= @book_status.status %>)<% if @book_status.status.title == "reading" %> (<%= @book.page_count %> / <%= @book_status.pages %>)<% end %>
+      <% if policy(@book_status).update? %>
+        <%= link_to edit_book_book_status_path(@book, @book_status), class: "btn btn-primary" do %>
+          Edit book status (<%= @book_status.status %>)<% if @book_status.status.title == "reading" %> (<%= @book.page_count %> / <%= @book_status.pages %>)<% end %>
+        <% end %>
       <% end %>
     <% else %>
-      <%= link_to 'Add to my library', new_book_book_status_path(@book), class: "btn btn-primary" %>
+      <% if policy(@book_status).create? %>
+        <%= link_to 'Add to my library', new_book_book_status_path(@book), class: "btn btn-primary" %>
+      <% end %>
     <% end %>
 
     <% if current_user.has_role?(:admin) || (current_user.has_role?(:author) && @book.user_id == current_user.id) %>

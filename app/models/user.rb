@@ -22,4 +22,8 @@ class User < ApplicationRecord
   def assign_default_role
     self.add_role(:reader)
   end
+
+  def admin?
+    self.has_role?(:admin)
+  end
 end
