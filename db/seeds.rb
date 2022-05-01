@@ -17,7 +17,7 @@ User.create!([{
 User.find(1).add_role(:admin)
 User.find(1).remove_role(:reader)
 
-10.times do |i|
+30.times do |i|
     Book.create!([{
         user_id: 1,
         title: "Book #{i}",

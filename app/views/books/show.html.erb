@@ -10,7 +10,7 @@
         <% end %>
       <% end %>
     <% else %>
-      <% if policy(@book_status).create? %>
+      <% if policy(BookStatus).create? %>
         <%= link_to 'Add to my library', new_book_book_status_path(@book), class: "btn btn-primary" %>
       <% end %>
     <% end %>

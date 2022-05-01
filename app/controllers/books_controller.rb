@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   # GET /books or /books.json
   def index
     @q = policy_scope(Book).ransack(params[:q])
-    @books = @q.result(distinct: true)
+    @pagy, @books = pagy(@q.result(distinct: true))
   end
 
   # GET /books/1 or /books/1.json

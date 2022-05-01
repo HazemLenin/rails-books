@@ -1,8 +1,12 @@
 class BookPolicy < ApplicationPolicy
     class Scope < Scope
         def resolve
-            if @user.has_role?(:author)
-                scope.where(user: @user)
+            if @user
+                if @user.has_role?(:author)
+                    scope.where(user: @user)
+                else
+                    scope.all
+                end
             else
                 scope.all
             end
