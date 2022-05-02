@@ -2,10 +2,13 @@ Rails.application.routes.draw do
   Rails.application.routes.default_url_options[:host] = "localhost:3000"
   resources :statuses
   resources :books do
-    resources :book_statuses, except: :index
+    resources :book_statuses, except: [:index, :show]
   end
-  resources :book_statuses, only: :index
+
+  get "library", to: 'book_statuses#index'
+  
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   devise_for :users
   # resources :users # must be after devise routes declaration
   root to: 'home#index'

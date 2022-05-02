@@ -4,11 +4,13 @@ class BookPolicy < ApplicationPolicy
             if @user
                 if @user.has_role?(:author)
                     scope.where(user: @user)
+                elsif @user.has_role?(:reader)
+                    scope.where("publication_date < ?", Date.today)
                 else
                     scope.all
                 end
             else
-                scope.all
+                scope.where("publication_date < ?", Date.today)
             end
         end
     end

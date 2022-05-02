@@ -3,16 +3,14 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Book statuses</h1>
-  </div>
+  <h1 class="text-4xl text-center">Library</h1>
 
   <div id="book_statuses" class="min-w-full">
     <% Status.all.each do |status| %>
       <div class="my-2">
         <h1 class="text-4xl mb-2"><%= status %></h1>
         
-        <div>
+        <div class="ml-5">
           <% BookStatus.where(user: current_user, status: status).each do |book_status| %>
             <%= render "books/bookRow", book: book_status.book %>
           <% end.empty? and begin %>

@@ -1,6 +1,6 @@
 class Status < ApplicationRecord
     has_many :book_statuses, dependent: :destroy
-    validate :title
+    validates :title, presence: true
 
     def to_s
         self.title

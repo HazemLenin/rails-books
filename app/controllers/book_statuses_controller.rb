@@ -5,6 +5,7 @@ class BookStatusesController < ApplicationController
 
   # GET /book_statuses or /book_statuses.json
   def index
+    authorize BookStatus
     @book_statuses = BookStatus.all
   end
 
@@ -15,6 +16,9 @@ class BookStatusesController < ApplicationController
   # GET /book_statuses/new
   def new
     @book_status = BookStatus.new
+
+    authorize @book_status
+    
     old_book_status = BookStatus.where(user: current_user, book: @book)
     
     if old_book_status.exists?
@@ -24,11 +28,14 @@ class BookStatusesController < ApplicationController
 
   # GET /book_statuses/1/edit
   def edit
+    authorize @book_status
   end
 
   # POST /book_statuses or /book_statuses.json
   def create
     @book_status = BookStatus.new(book_status_params)
+
+    authorize @book_status
 
     @book_status.book_id = @book.id
     @book_status.user_id = current_user.id
@@ -47,6 +54,8 @@ class BookStatusesController < ApplicationController
 
   # PATCH/PUT /book_statuses/1 or /book_statuses/1.json
   def update
+    authorize @book_status
+    
     respond_to do |format|
       if @book_status.update(book_status_params)
         # format.html { redirect_to book_book_status_url(@book, @book_status), notice: "Book status was successfully updated." }
@@ -61,6 +70,8 @@ class BookStatusesController < ApplicationController
 
   # DELETE /book_statuses/1 or /book_statuses/1.json
   def destroy
+    authorize @book_status
+    
     @book_status.destroy
 
     respond_to do |format|

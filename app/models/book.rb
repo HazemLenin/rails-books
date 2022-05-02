@@ -7,13 +7,13 @@ class Book < ApplicationRecord
 
   has_one_attached :cover
 
-  validates :title, :presence => true, length: {:maximum => 150}
-  validates :publication_date, :presence => true
-  validates :chapters, :presence => true
-  validates :page_count, :presence => true
+  validates :title, presence: true, length: {:maximum => 150}
+  validates :publication_date, presence: true
+  validates :chapters, presence: true
+  validates :page_count, presence: true
   validates :cover,
     content_type: ['image/png', 'image/jpg', 'image/jpeg'], size: { less_than: 500.kilobytes , message: 'size should be under 500 kilobytes' }
-  validates :description, :presence => true
+  validates :description, presence: true
 
   def to_s
     self.title + ' by ' + user.get_full_name

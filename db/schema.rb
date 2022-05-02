@@ -60,7 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_20_223555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
-    t.integer "book_statuses_count"
+    t.integer "book_statuses_count", default: 1
     t.index ["user_id"], name: "index_books_on_user_id"
   end
 

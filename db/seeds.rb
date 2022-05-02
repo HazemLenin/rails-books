@@ -17,11 +17,19 @@ User.create!([{
 User.find(1).add_role(:admin)
 User.find(1).remove_role(:reader)
 
+def give_date i
+    if i <= 15
+        "2022-3-3"
+    else
+        "2222-9-9"
+    end
+end
+
 30.times do |i|
     Book.create!([{
         user_id: 1,
         title: "Book #{i}",
-        publication_date: "2022-3-3",
+        publication_date: give_date(i),
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
         molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
         numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
