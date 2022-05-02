@@ -14,6 +14,8 @@ class BooksController < ApplicationController
     if user_signed_in?
       @book_status = BookStatus.where(user: current_user, book: @book).first # to show user book_status in book view
     end
+    @review = Review.new
+    @reviews = @book.reviews.order(:created_at)
   end
 
   # GET /books/new

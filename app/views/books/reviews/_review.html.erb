@@ -1,0 +1,9 @@
+<div class="bg-white rounded shadow-md my-4 p-4">
+    <div class="flex justify-between font-bold w-full">
+        <p><%= review.user.get_full_name %>(<%= review.user.username %>)</p>
+        <p>Rate: <%= review.rate %></p>
+    </div>
+    <div class="ml-10">
+        <%= review.content %>
+    </div>
+</div>

@@ -5,14 +5,14 @@
         </li>
         <% if user_signed_in? %>
             <% if current_user.has_role?(:reader) %>
-                <li class="nav-item dropdown-btn<% if current_page?(books_path) || current_page?(library_path) %> text-stone-300<% end %>">
+                <li class="nav-item dropdown-btn<% if current_page?(books_path) || current_page?(book_statuses_path) %> text-stone-300<% end %>">
                     Reader
                     <ul class="dropdown">
                         <li class="dropdown-item">
                             <%= link_to "Books", books_path, class: "#{'text-black' if current_page?(books_path)}" %>
                         </li>
                         <li class="dropdown-item">
-                            <%= link_to "Library", library_path, class: "#{'text-black' if current_page?(library_path)}" %>
+                            <%= link_to "Library", book_statuses_path, class: "#{'text-black' if current_page?(book_statuses_path)}" %>
                         </li>
                     </ul>
                 </li>

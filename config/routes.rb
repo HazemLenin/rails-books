@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   resources :statuses
   resources :books do
     resources :book_statuses, except: [:index, :show]
+    resources :reviews
   end
 
-  get "library", to: 'book_statuses#index'
+  resources :book_statuses, only: :index
   
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
