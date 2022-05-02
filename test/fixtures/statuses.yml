@@ -1,7 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  type: 
+  title: want to read
 
 two:
-  type: 
+  title: reading
+
+three:
+  title: read

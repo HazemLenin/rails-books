@@ -4,16 +4,19 @@ class StatusesController < ApplicationController
 
   # GET /statuses or /statuses.json
   def index
+    authorize Status
     @statuses = Status.all
   end
 
   # GET /statuses/1 or /statuses/1.json
   def show
+    authorize @status
   end
 
   # GET /statuses/new
   def new
     @status = Status.new
+    authorize @status
   end
 
   # GET /statuses/1/edit
@@ -23,6 +26,8 @@ class StatusesController < ApplicationController
   # POST /statuses or /statuses.json
   def create
     @status = Status.new(status_params)
+
+    authorize @status
 
     respond_to do |format|
       if @status.save
@@ -37,6 +42,8 @@ class StatusesController < ApplicationController
 
   # PATCH/PUT /statuses/1 or /statuses/1.json
   def update
+    authorize @status
+
     respond_to do |format|
       if @status.update(status_params)
         format.html { redirect_to status_url(@status), notice: "Status was successfully updated." }
@@ -50,6 +57,8 @@ class StatusesController < ApplicationController
 
   # DELETE /statuses/1 or /statuses/1.json
   def destroy
+    authorize @status
+    
     @status.destroy
 
     respond_to do |format|
@@ -66,6 +75,6 @@ class StatusesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def status_params
-      params.require(:status).permit(:type)
+      params.require(:status).permit(:title)
     end
 end

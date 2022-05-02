@@ -35,6 +35,9 @@
                             <%= link_to "Books", books_path, class: "#{'text-black' if current_page?(books_path)}" %>
                         </li>
                         <li class="dropdown-item">
+                            <%= link_to "Statuses", statuses_path, class: "#{'text-black' if current_page?(statuses_path)}" %>
+                        </li>
+                        <li class="dropdown-item">
                             <%= link_to "Dashboard", rails_admin_path, class: "#{'text-black' if current_page?(rails_admin_path)}" %>
                         </li>
                     </ul>
