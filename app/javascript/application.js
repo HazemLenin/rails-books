@@ -20,4 +20,23 @@ document.addEventListener('turbo:load', () =>{
             throw e;
         }
     }
+
+    let coverInput = document.getElementById("cover-input");
+    let coverPreviewer = document.getElementById("cover-previewer");
+
+    coverInput.addEventListener('change', (e) => {
+        var files = e.target.files;
+        var image = files[0]
+        var reader = new FileReader();
+        reader.onload = function(file) {
+          var img = new Image();
+          console.log(file);
+          img.src = file.target.result;
+          img.style.height = "200px";
+          coverPreviewer.innerHTML = "";
+          coverPreviewer.appendChild(img);
+        }
+        reader.readAsDataURL(image);
+        console.log(files);
+      });
 });

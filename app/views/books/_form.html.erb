@@ -33,7 +33,9 @@
 
   <div class="form-group">
     <%= form.label :cover %>
-    <%= form.file_field :cover, class: "form-control" %>
+    <%= form.file_field :cover, class: "form-control", id: "cover-input" %>
+    <div id="cover-previewer"></div>
+    <%= image_tag book.cover.variant(resize_to_limit: [200, 200]) if book.cover.attached? %>
   </div>
 
   <div class="form-group">

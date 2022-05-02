@@ -42,7 +42,8 @@
     @apply text-indigo-400 w-4 h-4;
   }
 
-  .form-group .field_with_errors input {
+  .form-group .field_with_errors input,
+  .form-group .field_with_errors textarea {
     @apply caret-red-400 ring-2 ring-red-400 focus:ring-red-400;
   }
 
