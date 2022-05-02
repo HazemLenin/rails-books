@@ -5,7 +5,7 @@
         </li>
         <% if user_signed_in? %>
             <% if current_user.has_role?(:reader) %>
-                <li class="nav-item dropdown-btn">
+                <li class="nav-item dropdown-btn<% if current_page?(books_path) || current_page?(book_statuses_path) %> text-stone-300<% end %>">
                     Reader
                     <ul class="dropdown">
                         <li class="dropdown-item">
@@ -18,7 +18,7 @@
                 </li>
             <% end %>
             <% if current_user.has_role?(:author) %>
-                <li class="nav-item dropdown-btn">
+                <li class="nav-item dropdown-btn<% if current_page?(books_path) %> text-stone-300<% end %>">
                     Author
                     <ul class="dropdown">
                         <li class="dropdown-item">
@@ -28,7 +28,7 @@
                 </li>
             <% end %>
             <% if current_user.has_role?(:admin) %>
-                <li class="nav-item dropdown-btn">
+                <li class="nav-item dropdown-btn<% if current_page?(books_path) || current_page?(rails_admin_path) %> text-stone-300<% end %>">
                     Admin
                     <ul class="dropdown">
                         <li class="dropdown-item">
