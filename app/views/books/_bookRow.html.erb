@@ -1,0 +1,19 @@
+<div class="bg-indigo-400 hover:bg-indigo-500 text-white rounded shadow w-full h-20 px-4 py-2 my-3 shadow-md hover:shadow-2xl cursor-pointer hover:scale-110 transition-all">
+    <%= link_to book_path(book), class: "block w-full h-full flex flex-row items-center" do %>
+        <div class="mr-6">
+            <%= image_tag book.cover.variant(resize_to_limit: [70, 70]) if book.cover.attached? %>
+        </div>
+        <p class="mr-auto">
+            <%= book %>
+        </p>
+        <p>
+            Publication date: <%= book.publication_date %>
+        </p>
+        <% if user_signed_in? && policy(book).update? %>
+            <div class="flex flex-row gap-2 p-1">
+                <%= link_to "Edit", edit_book_path(book), class: "btn btn-primary" %>
+                <%= button_to "Delete", book_path(book), method: :delete, class: "btn btn-danger" %>
+            </div>
+        <% end %>
+    <% end %>
+</div>
