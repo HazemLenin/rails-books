@@ -15,7 +15,7 @@ class BooksController < ApplicationController
       @book_status = BookStatus.where(user: current_user, book: @book).first # to show user book_status in book view
     end
     @review = Review.new
-    @reviews = @book.reviews.order(:created_at)
+    @reviews = @book.reviews.order(created_at: :desc)
   end
 
   # GET /books/new

@@ -25,10 +25,14 @@
 
 </div>
 
-<h2 class="text-3xl">Reviews (<%= @book.reviews_count %>)</h2>
+<h2 class="text-3xl">Reviews (<%= @book.reviews_count || 0 %>)</h2>
+
 <% if user_signed_in? %>
-  <%= render "books/reviews/form" %>
+  <%= render "reviews/form" %>
 <% end %>
-<% @reviews.each do |review| %>
-  <%= render "books/reviews/review", review: review %>
-<% end %>
+
+<div class="reviews" data-book-id="<%= @book.id %>"<% if user_signed_in? %> data-user-id="<%= current_user.id %>"<% end %>>
+  <% @reviews.each do |review| %>
+    <%= render "reviews/review", review: review %>
+  <% end %>
+</div>

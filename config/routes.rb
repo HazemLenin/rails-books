@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   Rails.application.routes.default_url_options[:host] = "localhost:3000"
+  
   resources :statuses
+
   resources :books do
     resources :book_statuses, except: [:index, :show]
     resources :reviews
