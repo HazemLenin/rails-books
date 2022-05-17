@@ -1,6 +1,9 @@
 class Book < ApplicationRecord
   after_commit :add_default_cover, on: [:create, :update]
 
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   belongs_to :user
 
   has_many :book_statuses, dependent: :destroy
