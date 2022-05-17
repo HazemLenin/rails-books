@@ -43,12 +43,12 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 # Use Sass to process CSS
-# gem "sassc-rails"
+gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
-gem 'ps'
+gem 'pg'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -78,11 +78,10 @@ end
 
 gem 'rails_admin', '~> 3.0'
 gem "devise"
-gem "sassc-rails"
-gem "image_processing", ">= 1.2"
 gem "active_storage_validations"
 gem "ransack"
 gem "rolify"
 gem "rails-erd", group: :development
 gem "pundit", "~> 2.2"
 gem 'pagy', '~> 5.10'
+gem 'friendly_id', '~> 5.4.0'
