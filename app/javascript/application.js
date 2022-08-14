@@ -1,7 +1,7 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
-import "channels"
+// import "channels"
 
 document.addEventListener('turbo:load', () =>{
     let select_status = document.getElementById("book-status-select");
