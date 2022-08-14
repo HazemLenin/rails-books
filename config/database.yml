@@ -20,12 +20,19 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+# production:
+#   <<: *default
+#   # # database: db/production.sqlite3
+#   # encoding: utf8
+#   # pool: 15
+#   # database: myapp_production
+#   # username: myapp
+#   # password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
+#   database: <%= ENV['DATABASE_URL'] %>
+
 production:
   <<: *default
-  # # database: db/production.sqlite3
-  # encoding: utf8
-  # pool: 15
-  # database: myapp_production
-  # username: myapp
-  # password: <%= ENV['MYAPP_DATABASE_PASSWORD'] %>
-  database: <%= ENV['DATABASE_URL'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  database: da689vcsjq2dar
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
